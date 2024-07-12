@@ -39,7 +39,7 @@ def restart_wg_service(ip):
     day = now.day
     port = f"{month}{day}"
 
-    with open("docker-compose.yml.tpl", "r") as f:
+    with open("docker-compose.yaml.tpl", "r") as f:
         data = f.read()
         template = Template(data)
         data = template.substitute(host_ip=ip, udp_port=port)
