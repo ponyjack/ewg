@@ -7,11 +7,11 @@ services:
       - LANG=en
       # ⚠ Required:
       # Change this to your host's public address
-      - WG_HOST={host_ip}
+      - WG_HOST=${host_ip}
       # Optional:
       - PASSWORD=kingsoft
       - PORT=555
-      - WG_PORT={udp_port}
+      - WG_PORT=${udp_port}
       # - WG_CONFIG_PORT=92820
       # - WG_DEFAULT_ADDRESS=10.8.0.x
       - WG_DEFAULT_DNS=1.1.1.1
@@ -29,7 +29,7 @@ services:
     volumes:
       - etc_wireguard:/etc/wireguard
     ports:
-      - "{udp_port}:{udp_port}/udp"
+      - "${udp_port}:${udp_port}/udp"
       - "555:555/tcp"
     restart: unless-stopped
     cap_add:
