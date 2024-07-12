@@ -51,6 +51,7 @@ def restart_wg_service(ip):
         logger.error("Error occurred while restarting wg service")
 
     try:
+        logger.warning("starting wg service {} {}", ip, port)
         output = subprocess.check_output("docker-compose up -d", shell=True)
         logger.info(output)
     except Exception:
