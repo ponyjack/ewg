@@ -6,6 +6,8 @@ from loguru import logger
 import socket
 import schedule
 
+import time
+
 
 def get_external_ip():
     try:
@@ -65,9 +67,13 @@ def main():
         if not ip:
             logger.error("Couldn't get local IP")
             return
-
-    schedule.every().day.at("03:00", "Asia/Shanghai").do(job, ip=ip)
+    restart_wg_service(ip)
+    schedule.every().day.at("03:00", "Asia/Shanghai").do(restart_wg_service, ip=ip)
 
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+
+if __name__ == "__main__":
+    main()
