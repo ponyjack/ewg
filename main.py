@@ -43,6 +43,7 @@ def restart_wg_service(ip):
         data = f.read()
         template = Template(data)
         data2 = template.substitute(host_ip=ip, udp_port=port)
+        logger.info(data2)
         with open("docker-compose.yml", "w") as f:
             f.write(data2)
 
